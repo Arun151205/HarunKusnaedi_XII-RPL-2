@@ -33,7 +33,7 @@ public class SimpleCalculator {
                 continue;
             }
 
-            System.out.println("Hasil: " + result);
+            System.out.println("Hasil dari : " + num1 + operator + num2 + " = " + result);
 
             System.out.print("Apakah Anda ingin melakukan operasi lain? (y/n): ");
             char choice = scanner.next().charAt(0);
