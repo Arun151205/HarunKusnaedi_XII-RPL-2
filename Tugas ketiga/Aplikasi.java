@@ -31,6 +31,7 @@ public class Aplikasi {
                     Kontak kontak = new Kontak(nama, nomorTelepon, email);
                     bukuTelepon.tambahkanKontak(kontak);
                     System.out.println("Kontak berhasil ditambahkan.");
+                    bukuTelepon.simpanDataKontak("Kontak.txt");
                     break;
                 case 2:
                     System.out.print("Nama kontak yang akan dihapus: ");
@@ -47,7 +48,6 @@ public class Aplikasi {
                     break;
                 case 5:
                     System.out.println("Keluar dari aplikasi.");
-                    bukuTelepon.simpanDataKontak("Kontak.txt");
                     scanner.close();
                     System.exit(0);
                 default:
