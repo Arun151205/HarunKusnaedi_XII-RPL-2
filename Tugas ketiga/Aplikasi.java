@@ -49,7 +49,6 @@ public class Aplikasi {
                     break;
                 case 4:
                     bukuTelepon.tampilkanDaftarKontak();
-                    bukuTelepon.bacaDataKontak("Kontak.txt");
                     break;
                 case 5:
                     System.out.println("Keluar dari aplikasi.");
