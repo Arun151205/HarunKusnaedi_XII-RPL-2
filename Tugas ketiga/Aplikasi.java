@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -8,6 +10,7 @@ public class Aplikasi {
     public static void main(String[] args) {
         BukuTelepon bukuTelepon = new BukuTelepon();
         Scanner scanner = new Scanner(System.in);
+        bukuTelepon.bacaDataKontak("Kontak.txt");
 
         while (true) {
             System.out.println("Menu:");
@@ -37,6 +40,7 @@ public class Aplikasi {
                     System.out.print("Nama kontak yang akan dihapus: ");
                     String namaHapus = scanner.nextLine();
                     bukuTelepon.hapusKontak(namaHapus);
+                    bukuTelepon.simpanDataKontak("Kontak.txt");
                     break;
                 case 3:
                     System.out.print("Nomor telepon kontak yang akan dihapus: ");
@@ -45,6 +49,7 @@ public class Aplikasi {
                     break;
                 case 4:
                     bukuTelepon.tampilkanDaftarKontak();
+                    bukuTelepon.bacaDataKontak("Kontak.txt");
                     break;
                 case 5:
                     System.out.println("Keluar dari aplikasi.");
@@ -152,4 +157,22 @@ class BukuTelepon {
         }
     }
     
+    public void bacaDataKontak(String namaFile) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(namaFile))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String nama = line.substring("Nama: ".length());
+            String nomorTelepon = reader.readLine().substring("Nomor Telepon: ".length());
+            String email = reader.readLine().substring("Email: ".length());
+            Kontak kontak = new Kontak(nama, nomorTelepon, email);
+            tambahkanKontak(kontak);
+            reader.readLine(); // Membaca baris kosong antara kontak
+        }
+        System.out.println("Data kontak berhasil dibaca dari " + namaFile);
+    } catch (IOException e) {
+        System.err.println("Gagal membaca data kontak dari " + namaFile);
+        e.printStackTrace();
+    }
+}
+
 }
